@@ -1,0 +1,319 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var namecompany = Context.Session.GetString("companyname");
+    var name = Context.Session.GetString("name");
+}
+@model  ShowApplicantsViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/user.css" rel="stylesheet">
+    <link href="~/css/create-and-sign.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="~/img/apple-touch-icon.png" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">Profile Personly</span>
+                </a>
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+
+    <aside id="sidebar" class="sidebar">
+
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@namecompany</h2>
+
+            </li>
+
+            <li class="nav-item" id="personly">
+                <a class="nav-link collapsed" asp-action="editempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-person"></i>
+                    <span>Edit My Account</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="jobadd" asp-controller="jobadd" >
+                    <i class="bi bi-card-list"></i>
+                    <span>My Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-people"></i>
+                    <span>Search for Employees</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchBouquet" asp-controller="Rigesterempo">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price Plans</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+            @* <li class="nav-item">
+              <a class="nav-link collapsed" asp-action="SS" asp-controller="Home">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price </span>
+                </a>  
+            </li> *@
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="changeempopass" asp-controller="Rigesterempo">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li><!-- End  change password Page Nav -->
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="Logout" asp-controller="Rigesterempo">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li><!-- End sign out Page Nav -->
+
+        </ul>
+    </aside>
+    <main id="main" class="main">
+
+               <section class="container mt-5">
+                            <h2 class="mb-4">Applicants for this Job</h2>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped align-middle">
+                                    <thead class="table-dark text-center">
+                                        <tr>
+                                            <th>Photo</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Education</th>
+                                            <th>Gender</th>
+                                            <th>Age</th>
+                                            <th>Nationality</th>
+                                            <th>Profile</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.applicant != null && Model.applicant.Any())
+                                        {
+                                            foreach (var applicant in Model.applicant)
+                                            {
+                                                <tr class="text-center">
+                                                    <td>
+                                                        <img src="~/img/team/team-3.jpg"
+                                                             alt="Applicant Photo"
+                                                             class="rounded-circle"
+                                                             style="width: 50px; height: 50px;" />
+                                                    </td>
+                                                    <td>@applicant.Name</td>
+                                                    <td>@applicant.Government</td>
+                                                    <td>@applicant.EducationLevel</td>
+                                                    <td>@applicant.Gender</td>
+                                                    <td>@applicant.Age</td>
+                                                    <td>@applicant.Country</td>
+                                                    <td>
+                                                        <a class="btn btn-sm btn-primary"
+                                                           asp-action="profilperson"
+                                                           asp-controller="jobadd"
+                                                           asp-route-id="@applicant.UserId">
+                                                            View Profile
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="8" class="text-center text-muted">No applicants found.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <!-- End #main -->
+
+    
+                  
+    </main>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="~/js/login.js"></script>
+    <script>
+            // لجمع البيانات وتخزينها في localStorage ثم التوجيه إلى صفحة أخرى
+        function storeAndRedirect() {
+            const jobName = document.getElementById('Job-name').value;
+            const jobField = document.getElementById('Job-field').value;
+            const country = document.getElementById('countrySelect').value;
+            const governorate = document.getElementById('Governorate').value;
+            const jobType = document.getElementById('times').value;
+            const numberOfEmployees = document.getElementById('Number').value;
+            const jobDetails = document.getElementById('details').value;
+            const educationalLevel = document.getElementById('Educational').value;
+            const experienceLevel = document.getElementById('Experience').value;
+            const gender = document.querySelector('input[name="radio-name"]:checked').nextElementSibling.textContent;
+            const minimumSalary = document.getElementById('Minimum').value;
+            const maximumSalary = document.getElementById('Maximum').value;
+
+            const jobData = {
+                jobName,
+                jobField,
+                country,
+                governorate,
+                jobType,
+                numberOfEmployees,
+                jobDetails,
+                educationalLevel,
+                experienceLevel,
+                gender,
+                minimumSalary,
+                maximumSalary
+            };
+
+            localStorage.setItem('jobData', JSON.stringify(jobData));
+
+            window.location.href = 'searchJob-aftersign.html';  // استبدل 'page.html' بعنوان الصفحة التي تريد توجيه المستخدم إليها
+        }
+
+        // لاسترجاع البيانات وعرضها في الصفحة الأخرى
+        function displayJobData() {
+            const jobData = JSON.parse(localStorage.getItem('jobData'));
+            if (jobData) {
+                const jobList = document.getElementById('job-list');
+                const newRow = document.createElement('div');
+                newRow.innerHTML = `
+                <div class="col"id="col">
+                        <div class="card h-100">
+                          <div class="pt">
+                            <div class="logo">
+                              <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                              <p class="card-title"id="card-title"><a href="">${jobData.jobName}</a></p>
+                            </div>
+
+                            <a href="#"><i class="bi bi-bookmark" id="bookmarkIcon"></i></a>
+
+                          </div>
+                          <div class="card-body">
+
+                            <p class="card-text"id="card-title">${jobData.jobDetails}</p>
+                          </div>
+                          <hr>
+                          <div class="card-count">
+                            <div class="time">
+                              <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time"id="categoryName">
+                              <p class="text-muted"id="card-title">${jobData.jobField}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                `;
+                jobList.appendChild(newRow);
+
+                // إزالة البيانات من localStorage بعد استرجاعها
+                localStorage.removeItem('jobData');
+            }
+        }
+
+        // استدعاء displayJobData عند تحميل الصفحة الأخرى
+        document.addEventListener('DOMContentLoaded', displayJobData);
+
+    </script>
+
+</body>
+
+</html>

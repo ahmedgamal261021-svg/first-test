@@ -1,0 +1,329 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var namecompany = Context.Session.GetString("companyname");
+    var name = Context.Session.GetString("name");
+}
+@model interwithuser
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/homeCampany.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/user.css">
+
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">@name</span>
+                </a>
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@namecompany</h2>
+
+            </li>
+
+            <li class="nav-item" id="personly">
+                <a class="nav-link collapsed" asp-action="editempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-person"></i>
+                    <span>Edit My Account</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="jobadd" asp-controller="jobadd" >
+                    <i class="bi bi-card-list"></i>
+                    <span>My Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-people"></i>
+                    <span>Search for Employees</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchBouquet" asp-controller="Rigesterempo">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price Plans</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+            @* <li class="nav-item">
+              <a class="nav-link collapsed" asp-action="SS" asp-controller="Home">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price </span>
+                </a>  
+            </li> *@
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="changeempopass" asp-controller="Rigesterempo">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li><!-- End  change password Page Nav -->
+
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="Logout" asp-controller="Rigesterempo">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li><!-- End sign out Page Nav -->
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+
+
+        <section class="section profile mt-4">
+            <div class="container">
+                <div class="row">
+                    <!-- Profile Card -->
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card shadow-sm p-3">
+                            <img src="~/img/services.png" class="img-fluid rounded-circle mb-3" width="120" alt="User Photo">
+                            <h3 class="mb-0">@Model.user.Name </h3>
+                            <p class="text-muted">Applicant</p>
+                        </div>
+                    </div>
+
+                    <!-- Personal Info -->
+                    <div class="col-md-8">
+                        <div class="card p-4 shadow-sm">
+                            <h4 class="mb-3">Personal Information</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Age:</strong> @Model.user.Age</li>
+                                <li class="list-group-item"><strong>Age:</strong> @Model.user.Age</li>
+                                <li class="list-group-item"><strong>Education:</strong> @Model.user.EducationLevel</li>
+                                <li class="list-group-item"><strong>Experience:</strong> @Model.user.ExperienceLevel</li>
+                                <li class="list-group-item"><strong>Gender:</strong>@Model.user.UserId@Model.user.UserId @Model.user.Gender</li>
+                                <li class="list-group-item"><strong>Nationality:</strong> </li>
+                            </ul>
+                            <button type="submit" class="Edit btn btn-success" id="showFormButton" value="@Model.user.UserId">📅 Schedule Interview </button>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mt-4 d-flex gap-3">
+
+                            @* <form asp-action="interviewInformation" asp-controller="jobadd" method="POST">
+                                <input type="hidden" name="userid" value="@Model.user.UserId" /> *@
+
+                                <!-- your other fields -->
+
+                          @*   <form asp-action="UpdateRequestStatus" asp-controller="jobadd" method="post">
+                                <input type="hidden" name="UserId" value="@Model.user.UserId" />
+
+                                <button type="submit" name="Status" value="Accept" class="btn btn-success">✅ Accept</button>
+                                <button type="submit" name="Status" value="Reject" class="btn btn-danger">❌ Reject</button>
+                            </form> *@
+                         
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="formOverlay" class="hiddens" style="display: none;">
+            <div id="formContainer">
+                <span id="closeFormButton">&times;</span>
+                <form asp-action="interviewInformation" asp-controller="jobadd" method="post">
+                    
+                    <input type="hidden" name="inter.userid" value="@Model.user.UserId" />
+                    <h2>Responding to the applicant for an interview</h2>
+                    
+                    <label asp-for="inter.job_name" class="form-label">Job Name</label>
+                    <input asp-for="inter.job_name" type="text" class="form-control">
+                    <span asp-validation-for="inter.job_name" class="text-danger"></span>
+                    <label asp-for="inter.companyName" class="form-label">companyName</label>
+                    <input asp-for="inter.companyName" type="text" class="form-control">
+                    <span asp-validation-for="inter.companyName" class="text-danger"></span>
+                    <label asp-for="inter.interview_date" class="form-label">Interview Date</label>
+                    <input asp-for="inter.interview_date" type="date" class="form-control">
+                    <span asp-validation-for="inter.interview_date" class="text-danger"></span>
+                    <label asp-for="inter.contact_number" class="form-label">Contact Number</label>
+                    <input asp-for="inter.contact_number" type="number" class="form-control">
+                    <span asp-validation-for="inter.contact_number" class="text-danger"></span>
+
+                    <label asp-for="inter.interview_address" class="form-label">Interview Address</label>
+                    <input asp-for="inter.interview_address" type="text" class="form-control">
+                    <span asp-validation-for="inter.interview_date" class="text-danger"></span>
+                    <label asp-for="inter.interview_result" class="form-label">Interview Result</label>
+                    <input asp-for="inter.interview_result" type="text" value="Panding" readonly>
+                    <!-- <button type="submit" class="Edit" name="Accept">Accept 👍</button> -->
+                    <!-- <button type="submit"value="submit" name="Accept" >send to applicant</button> -->
+                    <button type="submit" class="Edit" name="SubmitInterview">Send to Applicant</button>
+                </form> 
+                <div id="successMessage" style="display:none;">
+                    <p>The message has been sent to the applicant successfully</p>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src="~/js/login.js"></script>
+    
+    <script>
+           const showFormButton = document.getElementById('showFormButton');
+            const formOverlay = document.getElementById('formOverlay');
+            const closeFormButton = document.getElementById('closeFormButton');
+            const jobForm = document.getElementById('jobForm');
+            const successMessage = document.getElementById('successMessage');
+
+            showFormButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                formOverlay.style.display = 'flex';
+            });
+
+            closeFormButton.addEventListener('click', () => {
+                formOverlay.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === formOverlay) {
+                    formOverlay.style.display = 'none';
+                }
+            });
+
+            jobForm.addEventListener('submit', (event) => {
+                successMessage.style.display = 'block';
+            });
+        
+        // const showFormButton = document.getElementById('showFormButton');
+        //     const formOverlay = document.getElementById('formOverlay');
+        //     const closeFormButton = document.getElementById('closeFormButton');
+        //     const jobForm = document.getElementById('jobForm');
+        //     const successMessage = document.getElementById('successMessage');
+        //     // const returnButton = document.getElementById('returnButton');
+
+        //     showFormButton.addEventListener('click', () => {
+        //         formOverlay.style.display = 'flex';
+        //     });
+
+
+        //     closeFormButton.addEventListener('click', () => {
+        //         formOverlay.style.display = 'none';
+        //     });
+
+
+        //     window.addEventListener('click', (event) => {
+        //         if (event.target === formOverlay) {
+        //             formOverlay.style.display = 'none';
+        //         }
+        //     });
+
+
+        //     jobForm.addEventListener('submit', (event) => {
+        //         event.preventDefault();
+
+
+        //         jobForm.style.display = 'none';
+        //         successMessage.style.display = 'block';
+        //     });
+
+
+            // returnButton.addEventListener('click', () => {
+
+            //     window.location.href = 'Apply-Jobs.html';
+            // });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,448 @@
+﻿@using System.ComponentModel.DataAnnotations
+@model List<Jop>
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var Name = Context.Session.GetString("user_Name");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>User Home</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="HomeUser.html">Wuzfni</a></h1>
+
+            <nav id="navbar" class="navbar ">
+                <ul>
+                    <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+
+                </ul>
+
+            </nav>
+
+            <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+
+                    <!-- <li class="nav-item d-block d-lg-none">
+                      <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                      </a>
+                    </li> -->
+                    <!-- End Search Icon-->
+
+                    <div class="dropdown">
+                        <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                            <img src="   @(Url.Content("~/uploads/" +  photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                            <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" href="user-edit-account.html">
+                        <span class="d-none d-md-block  ps-2">@Name</span>
+                    </a>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Jobs</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="HomeUser.html">Home</a></li>
+                    <li class="breadcrumb-item active">Jobs</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section-search">
+            <div class="row">
+                <div class="col-xl-3 ">
+                    <div class="card " id="filter">
+                        <div class="col-md-8 col-lg-9">
+                            <h4>Gender</h4><hr>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Male">
+                                <label class="form-check-label">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Female" id="Female">
+                                <label class="form-check-label" for="Female">
+                                    Female
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Both genders" id="Bothgenders">
+                                <label class="form-check-label" for="Bothgenders">
+                                    Both genders
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <br>
+                            <h4>Type of job</h4><hr>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Full time" id="Full time">
+                                <label class="form-check-label" for="Full time">
+                                    Full Time
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Half Time" id="Half Time">
+                                <label class="form-check-label" for="Half Time">
+                                    Half Time
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <br>
+                            <h4>Experience level</h4><hr>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Without experience" id="Without-experience">
+                                <label class="form-check-label" for="Without-experience">
+                                    Without experience
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Fresh graduate" id="Fresh-graduate">
+                                <label class="form-check-label" for="Fresh-graduate">
+                                    Fresh graduate
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1 - 3 years" id="one-three-years">
+                                <label class="form-check-label" for="one-three-years">
+                                    1 - 3 years
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                       value="3 - 5 years" id="without-exp">
+                                <label class="form-check-label" for="three-five-years">
+                                    3 - 5 years
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="5 - 8 years" id="five-eight-years">
+                                <label class="form-check-label" for="five-eight-years">
+                                    5 - 8 years
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="More than eight years" id="More-than-eight-years">
+                                <label class="form-check-label" for="More-than-eight-years">
+                                    More than eight years
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-9">
+                    <div class="card">
+                        <div class="search-bar d-flex align-items-center">
+                            <input type="text" id="searchInput" placeholder="Search" title="Enter search keyword">
+                            <button onclick="searchAfterSign()"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="row row-cols-2 row-cols-md-2 lg-6" id="list-of-job">
+
+                            @foreach (var jobs in Model)
+                            {
+                                <div class="col job-card"
+                                    >
+                                    <div class="card h-100" data-gender="@jobs.Gender"
+                                         data-type="@jobs.type_of_job"
+                                         data-experience="@jobs.years_of_experience"
+                                         data-country="@jobs.country"
+                                         data-field="@jobs.job_field">
+                                        <div class="pt">
+                                            <div class="logo">
+                                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                                <p class="card-title" id="card-title">
+                                                    <a href="@Url.Action("Applyjop", "signuser", new { jobId = jobs.job_id })">
+                                                        @jobs.job_name
+                                                    </a> 
+                                                </p>
+                                            </div>
+
+                                            <a href="#"><i class="bi bi-bookmark" id="bookmarkIcon"></i></a>
+
+
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text" id="card-title">@jobs.job_details </p>
+                                        </div>
+                                        <hr>
+                                        <div class="card-count">
+                                            <div class="time">
+                                                <p class="text-muted">@DateTime.Now </p>
+                                            </div>
+                                            <div class="time" id="categoryName">
+                                                <p class="text-muted" id="card-title">@jobs.Gender</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-info">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span>Wuzfni</span>
+                    </a>
+                    <p>wuzfni website is not an employment company and provides all its services to those seeking work for free without paying any fees</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                        <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                        <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                        <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Category</h4>
+                    <ul>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Product Management</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>
+                        A108 Adam Street <br>
+                        New York, NY 535022<br>
+                        United States <br><br>
+                        <strong>Phone:</strong> +1 5589 55488 55<br>
+                        <strong>Email:</strong> Wuzfni@gmail.com<br>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Wuzfni</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ -->
+                Designed by <a href=" Wuzfni@gmail.com">Wuzfni</a>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/main.js"></script>
+    <script src="~/js/searchjob.js"></script>
+    @{
+        var userId = Context.Session.GetInt32("user_id") ?? 0;
+    }
+    <script>
+           const userId = @userId;
+        function handleJobClick(job ) {
+               
+            fetch('/signuser/StoreJobData',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(job)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // ✅ Redirect only after job is stored
+                             window.location.href = `/signuser/Applyjop?id=${userId}`;
+                } else {
+                    alert("Failed to store job data.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+
+            // ❌ Don't return true — it prevents link from navigating immediately
+            return false;
+        }
+    //     document.addEventListener('DOMContentLoaded', function () {
+    //   Display form data on this page
+    //   displayFormData();
+    // });
+
+    // function displayFormData() {
+    //   const formData = JSON.parse(localStorage.getItem('formData'));
+    //   console.log(localStorage);
+    //   if (formData) {
+    //       Display form data wherever needed on this page
+    //       document.getElementById('list-of-job').innerHTML =`
+
+    //           <div class="col"id="col">
+    //             <div class="card h-100">
+    //               <div class="pt">
+    //                 <div class="logo">
+    //                   <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+    //                   <p class="card-title"id="card-title"><a href="">${formData.Jobname}</a></p>
+    //                 </div>
+
+    //                 <a href="#" class="bookmark-btn"><i class="bi bi-bookmark"></i></a>
+
+    //               </div>
+    //               <div class="card-body">
+
+    //                 <p class="card-text"id="card-title">${formData.details}</p>
+    //               </div>
+    //               <hr>
+    //               <div class="card-count">
+    //                 <div class="time">
+    //                   <p class="text-muted">Last updated 3 mins ago</p>
+    //                 </div>
+    //                 <div class="time"id="categoryName">
+    //                   <p class="text-muted"id="card-title">${formData.Jobfield}</p>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           </div>
+    //       `;
+    //   }
+    // }
+
+      </script> 
+       <!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  // Display form data on this page
+  displayFormData();
+});
+
+function displayFormData() {
+  const formData = JSON.parse(localStorage.getItem('formData'));
+  // console.log(localStorage);
+  if (formData) {
+      // Display form data wherever needed on this page
+      document.getElementById('list-of-job').innerHTML =`
+  
+          <div class="col"id="col">
+            <div class="card h-100">
+              <div class="pt">
+                <div class="logo">
+                  <a href=""><img src="assets/img/services.png" class="card-img-top" alt="..."></a>
+                  <p class="card-title"id="card-title"><a href="">${formData.Jobname}</a></p>
+                </div>
+                
+                <a href="#" class="bookmark-btn"><i class="bi bi-bookmark"></i></a>
+                
+              </div>
+              <div class="card-body">
+                
+                <p class="card-text"id="card-title">${formData.details}</p>
+              </div>
+              <hr>
+              <div class="card-count">
+                <div class="time">
+                  <p class="text-muted">Last updated 3 mins ago</p>
+                </div>
+                <div class="time"id="categoryName">
+                  <p class="text-muted"id="card-title">${formData.Jobfield}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      `;
+  }
+}
+  </script> -->
+</body>
+
+</html>

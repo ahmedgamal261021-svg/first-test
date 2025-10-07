@@ -1,0 +1,366 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model edituser
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var Name = Context.Session.GetString("user_Name");
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/user.css" rel="stylesheet">
+    <link href="~/css/phone.css" rel="stylesheet">
+    <link href="~/css/create-and-sign.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="HomeUser.html" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+            <nav id="navbar" class="navbar ">
+                <ul>
+                    <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+
+                </ul>
+
+            </nav>
+        </div>
+        <!-- End Logo -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <!-- <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                  </a>
+                </li> -->
+                <!-- End Search Icon-->
+
+                <div class="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="@(Url.Content("~/uploads/" +  photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="edituser.php">
+                    <span class="d-none d-md-block  ps-2">@Name</span>
+                </a>
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="@(Url.Content("~/uploads/" +  photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@Name</h2>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="userFavoritejobs" asp-controller="signuser" class="nav-link collapsed" >
+                    <i class="bi bi-heart"></i>
+                    <span>Favorite Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="changeuserpass" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="applijopuser" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Applied Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="appliinterview" asp-controller="signuser"  class="nav-link collapsed">
+                    <i class="bi bi-Handshake"></i>
+                    <span>Available Interviews</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="Logout" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <!-- content of user-->
+                <section class="wizard-section">
+                    <div class="row no-gutters">
+                        <!-- <div class="col-lg-6 col-md-6">
+                          <div class="wizard-content-left d-flex justify-content-center align-items-center">
+
+                          </div> -->
+                        <!-- </div> -->
+                        <!-- <div class="col-12 "> -->
+                        <div class="form-wizard">
+                            <form asp-action="edituser" asp-controller="signuser" method="POST" enctype="multipart/form-data">
+                                <input asp-for="id"  value="@Model.id" type="hidden" />
+                                <fieldset class="wizard-fieldset show">
+                                    <h5>Personal Data</h5>
+
+                                    <div class="mb-3">
+                                        <label asp-for="fname"  class="form-label"></label>
+                                        <input asp-for="fname" class="form-control" value="@Model.fname"/>
+                                        <span asp-validation-for="fname" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="lname" class="form-label"></label>
+                                        <input asp-for="lname" class="form-control" value="@Model.lname" />
+                                        <span asp-validation-for="lname" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="lnaphoneme" class="form-label"></label>
+                                        <input asp-for="lnaphoneme" class="form-control" value="@Model.lnaphoneme" />
+                                        <span asp-validation-for="lnaphoneme" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="age" class="form-label"></label>
+                                        <input asp-for="age" class="form-control" value="@Model.age" />
+                                        <span asp-validation-for="age" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group clearfix">
+                                        <a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="wizard-fieldset">
+                                    <h5>Basic Data</h5>
+
+                                    <div class="form-group">
+                                        <label asp-for="countrySelect" class="form-label">Country</label>
+                                        <select asp-for="countrySelect" class="form-control" value="@Model.countrySelect">
+                                            <option value="">-- Select Country --</option>
+                                            <option value="EG">Egypt</option>
+                                            <option value="DZ">Algeria</option>
+                                            <option value="KW">Kuwait</option>
+                                            <!-- Add more -->
+                                        </select>
+                                        <span asp-validation-for="countrySelect" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="governante" class="form-label">Governante</label>
+                                        <select asp-for="governante" class="form-control" value="@Model.governante">
+                                            <option value="">-- Select --</option>
+                                            <option value="EG">Egypt</option>
+                                        </select>
+
+                                        <span asp-validation-for="governante" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="education_level" class="form-label">Education Level</label>
+                                        <select asp-for="education_level" class="form-control" value="@Model.education_level">
+                                            <option>College</option>
+                                            <option>Institute</option>
+                                            <option>Bachelor's degree</option>
+                                            <option>Diploma</option>
+                                            <option>Uneducated</option>
+                                            <option>Qualified</option>
+                                        </select>
+                                        <span asp-validation-for="education_level" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="experience_level" class="form-label">Experience Level</label>
+                                        <select asp-for="experience_level" class="form-control" value="@Model.experience_level">
+                                            <option>No experience</option>
+                                            <option>Fresh graduate</option>
+                                            <option>1-3 Years</option>
+                                            <option>3-5 Years</option>
+                                            <option>5-8 Years</option>
+                                            <option>More Than 8 Years</option>
+                                        </select>
+                                        <span asp-validation-for="experience_level" class="text-danger"></span>
+                                    </div>
+                                    <
+                                    <div class="form-group">
+                                        <label for="ProfilePhoto" class="wizard-form-text-label">Upload Profile Photo</label>
+                                        <input type="file" class="form-control" id="ProfilePhoto" name="ProfilePhoto" accept="image/*" />
+                                        <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+                                        <input type="submit" class="form-wizard-submit float-right" value="Save Changes" />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <!-- content of user-->
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a href="#" class="logo d-flex align-items-center">
+                            <span>Wuzfni</span>
+                        </a>
+                        <p>wuzfni website is not an employment company and provides all its services to those seeking work for free without paying any fees</p>
+                        <div class="social-links d-flex mt-4">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Links</h4>
+                        <ul>
+                            <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                            <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                            <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                            <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>Our Category</h4>
+                        <ul>
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Web Development</a></li>
+                            <li><a href="#">Product Management</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Graphic Design</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>Contact Us</h4>
+                        <p>
+                            A108 Adam Street <br>
+                            New York, NY 535022<br>
+                            United States <br><br>
+                            <strong>Phone:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> Wuzfni@gmail.com<br>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container mt-4">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Wuzfni</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ -->
+                    Designed by <a href=" Wuzfni@gmail.com">Wuzfni</a>
+                </div>
+            </div>
+
+        </footer>
+        <!-- End Footer -->
+        </div>
+        </section>
+    </main>
+    <!-- End #main -->
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="~/js/login.js"></script>
+    <!-- <script src="~/js/main.js"></script> -->
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/phone.js"></script>
+    <script src="~/js/login.js"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+
+          initialCountry: "us",
+
+          utilsScript: "~/js/utils.js"
+        });
+    </script>
+</body>
+
+</html>

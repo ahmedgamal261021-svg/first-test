@@ -1,0 +1,343 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var namecompany = Context.Session.GetString("companyname");
+    var name = Context.Session.GetString("name");
+}
+@model editcompany
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>company edit account</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+
+
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/homeCampany.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/phone.css">
+    <link rel="stylesheet" href="~/css/create-and-sign.css">
+
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">@name</span>
+                </a>
+                <!-- End Profile Iamge Icon -->
+                <!-- <li class="nav-item dropdown pe-3">
+
+
+
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                      <h6>Kevin Anderson</h6>
+                      <span>Web Designer</span>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Need Help?</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li> -->
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@namecompany</h2>
+
+            </li>
+
+            <!-- <li class="nav-item" id="personly">
+              <a class="nav-link collapsed" href="edit_account.php">
+                <i class="bi bi-person"></i>
+                <span>Edit My Account</span>
+              </a>
+            </li>End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="jobadd" asp-controller="jobadd" >
+                    <i class="bi bi-card-list"></i>
+                    <span>My Jobs</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-people"></i>
+                    <span>Search for Employees</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="campany-price-plan.php">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price Plans</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="changeempopass" asp-controller="Rigesterempo">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li><!-- End  change password Page Nav -->
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="Logout" asp-controller="Rigesterempo">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li><!-- End sign out Page Nav -->
+
+        </ul>
+
+    </aside>
+
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <section class="wizard-section ">
+                    <div class="row ">
+                        @* <div class="col-lg-2 col-md-6">
+                            <div class="wizard-content-left d-flex justify-content-center align-items-center">
+                                <!-- Sidebar or logo can go here -->
+                            </div>
+                        </div> *@
+
+                        @* <div class="col-lg-10 col-md-6"> *@
+                            <div class="form-wizard">
+                                <form asp-action="editempo" asp-Controller="Rigesterempo"  method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" asp-for="id" Value ="@Model.id" > 
+                                    <!-- Header steps -->
+                                    <div class="form-wizard-header mb-9">
+                                        <p>Fill all form fields to proceed</p>
+                                        <ul class="list-unstyled form-wizard-steps clearfix">
+                                            <li class="active">
+                                                <span>1</span>
+                                                <div>Employer Information</div>
+                                            </li>
+                                            <li>
+                                                <span>2</span>
+                                                <div>Company Information</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Step 1: Employer Information -->
+                                <fieldset class="wizard-fieldset show">
+                                    <h5>Personal Data</h5>
+
+                                    <div class="mb-3">
+                                        <label asp-for="fname" class="form-label"></label>
+                                        <input asp-for="fname" class="form-control" value="@Model.fname" />
+                                        <span asp-validation-for="fname" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="lname" class="form-label"></label>
+                                        <input asp-for="lname" class="form-control" value="@Model.lname" />
+                                        <span asp-validation-for="lname" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label asp-for="lnaphoneme" class="form-label"></label>
+                                        <input asp-for="lnaphoneme" class="form-control" value="@Model.lnaphoneme" />
+                                        <span asp-validation-for="lnaphoneme" class="text-danger"></span>
+                                    </div>
+                                    
+                                     <div class="form-group">
+                                        <label asp-for="email" class="form-label"></label>
+                                        <input asp-for="email" class="form-control" value="@Model.email" />
+                                        <span asp-validation-for="age" class="text-danger"></span>
+                                    </div> 
+
+                                    <div class="form-group clearfix">
+                                        <a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+                                    </div>
+                                </fieldset>
+
+                                    <!-- Step 2: Company Info -->
+                                    <fieldset class="wizard-fieldset">
+                                        <h5>Company Information</h5>
+
+                                    <div class="form-group">
+                                        <label asp-for="companyName" class="form-label"></label>
+                                        <input asp-for="companyName" class="form-control" value="@Model.companyName" />
+                                        <span asp-validation-for="companyName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="field_of_work" type="text" class="form-control wizard-required" value="@Model.field_of_work" />
+                                        <label asp-for="field_of_work" class="wizard-form-text-label">Field Of Work <span class="star">*</span></label>
+                                        <span asp-validation-for="field_of_work" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input asp-for="job_title" type="text" class="form-control wizard-required" value="@Model.job_title" />
+                                        <label asp-for="job_title" class="wizard-form-text-label">job_title<span class="star">*</span></label>
+                                        <span asp-validation-for="job_title" class="text-danger"></span>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+
+                                        <div class="form-group clearfix mt-3">
+                                        <a href="javascript:;" class="form-wizard-previous-btn float-left">⬅ Previous</a>
+                                            <button type="submit" name="submit" class="btn btn-success float-right">✔ Submit</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            @* </div> *@
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="~/js/login.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/phone.js"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+
+          initialCountry: "us",
+
+          utilsScript: "~/js/utils.js"
+        });
+    </script>
+
+</body>
+
+</html>

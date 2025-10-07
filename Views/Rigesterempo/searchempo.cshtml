@@ -1,0 +1,575 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var namecompany = Context.Session.GetString("companyname");
+    var name = Context.Session.GetString("name");
+}
+@model List<Rigesteruser>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/homeCampany.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">@name</span>
+                </a>
+                <!-- End Profile Iamge Icon -->
+                <!-- <li class="nav-item dropdown pe-3">
+
+
+
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                      <h6>Kevin Anderson</h6>
+                      <span>Web Designer</span>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Need Help?</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li> -->
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@namecompany</h2>
+
+            </li>
+
+            <li class="nav-item" id="personly">
+                <a class="nav-link collapsed" asp-action="editempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-person"></i>
+                    <span>Edit My Account</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="jobadd" asp-controller="jobadd" >
+                    <i class="bi bi-card-list"></i>
+                    <span>My Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-people"></i>
+                    <span>Search for Employees</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchBouquet" asp-controller="Rigesterempo">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price Plans</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+            @* <li class="nav-item">
+              <a class="nav-link collapsed" asp-action="SS" asp-controller="Home">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price </span>
+                </a>  
+            </li> *@
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="changeempopass" asp-controller="Rigesterempo">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li><!-- End  change password Page Nav -->
+
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="Logout" asp-controller="Rigesterempo">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li><!-- End sign out Page Nav -->
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <!-- اكتب هنا ي معلم  -->
+                <!-- <div class="col-md-12"id="search-user">
+                  <div class="search-bar">
+                    <h1 class="text-md-start">Find Employees</h1>
+                    <form class="search-form d-flex align-items-center" method="POST" action="#"id="search-form">
+                      <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                    </form>
+                  </div>
+                  <br>
+
+                  <table class="form-tabel" >
+                    <tr >
+                      <th class="rows"><div class="form-group">
+                        <label for="countrySelect">Country <span class="star">*</span></label>
+                              <select id="countrySelect" onchange="updateCityList()" class="form-select">
+                                <optgroup label="choose Your countries"></optgroup>
+                                <option selected>choose the country</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="EG">Egypt</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="LY">Libya</option>
+                                <option value="MA">Morocco</option>
+                                <option value="MR">Mauritania</option>
+                                <option value="OM">Oman</option>
+                                <option value="QA">Qatar</option>
+                                <option value="SD">Sudan</option>
+                                <option value="SY">Syria</option>
+                                <option value="TN">Tunisia</option>
+                              </select>
+                              </div></th>
+                      <th class="rows">
+                        <div class="form-group">
+                        <label for="governante">Governante <Span class="star">*</Span></label>
+                        <select id="Governorate" name="Governorate" class="form-select">
+                                <option selected>choose the Governorate</option>
+                              </select></th>
+
+                    </tr>
+                    <tr>
+                      <th class="rows"> <div class="form-group">
+                        <label for="fild of">Field of work <span class="star">*</span></label>
+                        <select id="fild of" name="fild of work" class="form-select">
+                                <option selected>All</option>
+                                <option>engineer</option>
+                                <option>Markting</option>
+                                <option>drivers</option>
+                              </select>
+                              </div></th>
+                      <th class="rows"><div class="form-group">
+                        <label for="Age">Range of Age <span class="star">*</span> </label>
+                        <select id="Age" name="Experience Level" class="form-select">
+
+                                <option selected>All</option>
+                                <option>from 20-23 </option>
+                                <option>from 24-27</option>
+                                <option>from 28-35</option>
+                                <option>from 35-40</option>
+                                <option>from 40-50</option>
+                              </select>
+                        </div></th>
+                    </tr>
+                    <tr>
+                      <th class="rows"><div class="form-group">
+                        <label for="gander"></span>Gander<span class="star">*</span> </label>
+                        <select id="gander" name="Experience Level" class="form-select">
+                                <option selected>All</option>
+
+                                <option>Male</option>
+                                <option>Femle</option>
+
+                              </select>
+                        </div></th>
+                        <th class="rows"> <div class="form-group">
+                          <label for="Experience">Experience Level <span class="star">*</span></label>
+                          <select id="Experience" name="Experience Level" class="form-select">
+                                  <option selected>All</option>
+                                  <option>Without experience</option>
+                                  <option>Fresh graduate</option>
+                                  <option>1 - 3 years</option>
+                                  <option>3 - 5 years</option>
+                                  <option>5 - 8 years</option>
+                                  <option>More than eight years</option>
+
+                                </select> <div class="form-group">
+                                  </div>
+                                </th>
+                    </tr>
+                  </table>
+
+                  <div class="grid-container"id="employee-grid">
+
+                    <div class="pad">
+                      <div class="photo-left">
+                        <img  src="~/img/team/team-1.jpg" />
+                        <div class="contact-pad">
+                          <h3>ali Ahmed</h3><br>
+                          <h1>front end Developer </h1>
+                          <p>Egypt,Alex</p>
+
+                          <p>male</p>
+
+                          <a href="profil-person2.html" class="pad-link">Profile</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pad">
+                      <div class="photo-left">
+                        <img  src="~/img/team/team-1.jpg" />
+                        <div class="contact-pad">
+                          <h3>Awad Ahmed</h3><br>
+                          <h1>front end Developer </h1>
+                          <p>Egypt,Alex</p>
+
+                          <p>male</p>
+
+                          <a href="profil-person2.html" class="pad-link">Profile</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pad">
+                      <div class="photo-left">
+                        <img  src="~/img/team/team-1.jpg" />
+                        <div class="contact-pad">
+                          <h3>sara Ahmed</h3><br>
+                          <h1>front end Developer </h1>
+                          <p>Egypt,Alex</p>
+
+                          <p>femal</p>
+
+                          <a href="profil-person2.html" class="pad-link">Profile</a>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div> -->
+                <!-- اكتب هنا ي معلم  -->
+
+                <div class="col-md-12" id="search-user">
+                    <div class="search-bar">
+                        <h1 class="text-md-start">Find Employees</h1>
+                        <form class="search-form d-flex align-items-center" method="POST" action="#" id="search-form">
+                            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                    <br>
+
+                    <table class="form-tabel">
+                        <tr>
+                            <th class="rows">
+                                <div class="form-group">
+                                    <label for="countrySelect">Country <span class="star">*</span></label>
+                                    <select id="countrySelect" onchange="filterEmployees()" onchange="updateCityList()" class="form-select">
+                                        <optgroup label="choose Your countries"></optgroup>
+                                        <option selected>choose the country</option>
+                                        <option value="AE">United Arab Emirates</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="EG">Egypt</option>
+                                        <option value="KW">Kuwait</option>
+                                        <option value="LB">Lebanon</option>
+                                        <option value="LY">Libya</option>
+                                        <option value="MA">Morocco</option>
+                                        <option value="MR">Mauritania</option>
+                                        <option value="OM">Oman</option>
+                                        <option value="QA">Qatar</option>
+                                        <option value="SD">Sudan</option>
+                                        <option value="SY">Syria</option>
+                                        <option value="TN">Tunisia</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th class="rows">
+                                <div class="form-group">
+                                    <label for="governante">Governante <Span class="star">*</Span></label>
+                                    <select id="Governorate" name="Governorate" class="form-select" onchange="filterEmployees()">
+                                        <option selected>choose the Governorate</option>
+                                    </select>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="rows">
+                                <div class="form-group">
+                                    <label for="fildOfWork">Field of work <span class="star">*</span></label>
+                                    <select id="fildOfWork" name="fildOfWork" class="form-select" onchange="filterEmployees()">
+                                        <option selected>All</option>
+                                        <option value="engineer">Engineer</option>
+                                        <option value="marketing">Marketing</option>
+                                        <option value="drivers">Drivers</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th class="rows">
+                                <div class="form-group">
+                                    <label for="Age">Range of Age <span class="star">*</span> </label>
+                                    <select id="Age" name="Age" class="form-select" onchange="filterEmployees()">
+                                        <option selected>All</option>
+                                        <option value="20-23">from 20-23</option>
+                                        <option value="24-27">from 24-27</option>
+                                        <option value="28-35">from 28-35</option>
+                                        <option value="35-40">from 35-40</option>
+                                        <option value="40-50">from 40-50</option>
+                                    </select>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="rows">
+                                <div class="form-group">
+                                    <label for="gender">Gender<span class="star">*</span> </label>
+                                    <select id="gender" name="gender" class="form-select" onchange="filterEmployees()">
+                                        <option selected>All</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th class="rows">
+                                <div class="form-group">
+                                    <label for="Experience">Experience Level <span class="star">*</span></label>
+                                    <select id="Experience" name="Experience" class="form-select" onchange="filterEmployees()">
+                                        <option selected>All</option>
+                                        <option value="Without experience">Without experience</option>
+                                        <option value="Fresh graduate">Fresh graduate</option>
+                                        <option value="1-3 years">1 - 3 years</option>
+                                        <option value="3-5 years">3 - 5 years</option>
+                                        <option value="5-8 years">5 - 8 years</option>
+                                        <option value="More than eight years">More than eight years</option>
+                                    </select>
+                                </div>
+                            </th>
+                        </tr>
+
+                    </table>
+                    @foreach (var user in Model)
+                    {
+                        <div class="grid-container" id="employee-grid">
+                            <div class="pad">
+                                <div class="photo-left">
+                                    <img src="~/uploads/@user.ProfilePhoto" />
+                                    <div class="contact-pad">
+                                        <h3>@user.Name @user.Name</h3><br>
+                                        <h1>@user.JobName</h1>
+                                        <p>@user.Country, @user.Government</p>
+                                        <p>@user.Gender</p>
+                                        <p>@user.ExperienceLevel</p>
+                                        <a asp-action="profilperson" asp-controller="jobadd" asp-route-id="@user.UserId" class="pad-link">Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                        <div class="pad">
+                            <div class="photo-left">
+                                <img src="~/img/team/team-1.jpg" />
+                                <div class="contact-pad">
+                                    <h3>Awad Ahmed</h3><br>
+                                    <h1>Front End Developer</h1>
+                                    <p>Egypt, Alex</p>
+                                    <p>Male</p>
+                                    <a href="profil-person2.html" class="pad-link">Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pad">
+                            <div class="photo-left">
+                                <img src="~/img/team/team-1.jpg" />
+                                <div class="contact-pad">
+                                    <h3>Sara Ahmed</h3><br>
+                                    <h1>Front End Developer</h1>
+                                    <p>Egypt, Alex</p>
+                                    <p>Female</p>
+                                    <a href="profil-person2.html" class="pad-link">Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src="~/js/login.js"></script>
+    <!-- <script>
+      function filterEmployees() {
+        const country = document.getElementById('countrySelect').value;
+        const governorate = document.getElementById('Governorate').value;
+        const fieldOfWork = document.getElementById('fildOfWork').value;
+        const ageRange = document.getElementById('Age').value;
+        const gender = document.getElementById('gender').value;
+        const experience = document.getElementById('Experience').value;
+
+        const employees = document.querySelectorAll('.pad');
+
+        employees.forEach(employee => {
+          const employeeCountry = employee.getAttribute('data-country');
+          const employeeGovernorate = employee.getAttribute('data-governorate');
+          const employeeField = employee.getAttribute('data-field');
+          const employeeAge = employee.getAttribute('data-age');
+          const employeeGender = employee.getAttribute('data-gender');
+          const employeeExperience = employee.getAttribute('data-experience');
+
+          if ((country === 'choose the country' || employeeCountry === country) &&
+              (governorate === 'choose the Governorate' || employeeGovernorate === governorate) &&
+              (fieldOfWork === 'All' || employeeField === fieldOfWork) &&
+              (ageRange === 'All' || employeeAge === ageRange) &&
+              (gender === 'All' || employeeGender === gender) &&
+              (experience === 'All' || employeeExperience === experience)) {
+            employee.style.display = '';
+          } else {
+            employee.style.display = 'none';
+          }
+        });
+      }
+    </script> -->
+
+    <script>
+        function filterEmployees() {
+          const country = document.getElementById('countrySelect').value;
+          const governorate = document.getElementById('Governorate').value;
+          const field = document.getElementById('fildOfWork').value;
+          const age = document.getElementById('Age').value;
+          const gender = document.getElementById('gender').value;
+          const experience = document.getElementById('Experience').value;
+
+          const employees = document.querySelectorAll('.pad');
+
+          employees.forEach(employee => {
+            const employeeCountry = employee.querySelector('p:nth-of-type(1)').innerText.split(',')[0].trim();
+            const employeeGovernorate = employee.querySelector('p:nth-of-type(1)').innerText.split(',')[1].trim();
+            const employeeField = employee.querySelector('h1').innerText.trim();
+            const employeeGender = employee.querySelector('p:nth-of-type(2)').innerText.trim().toLowerCase();
+            const employeeExperience = employee.dataset.experience;
+            const employeeAgeRange = employee.dataset.age;
+
+            const matchesCountry = country === 'choose the country' || employeeCountry === country;
+            const matchesGovernorate = governorate === 'choose the Governorate' || employeeGovernorate === governorate;
+            const matchesField = field === 'All' || employeeField.toLowerCase().includes(field);
+            const matchesAge = age === 'All' || employeeAgeRange === age;
+            const matchesGender = gender === 'All' || employeeGender === gender;
+            const matchesExperience = experience === 'All' || employeeExperience === experience;
+
+            if (matchesCountry && matchesGovernorate && matchesField && matchesAge && matchesGender && matchesExperience) {
+              employee.style.display = 'block';
+            } else {
+              employee.style.display = 'none';
+            }
+          });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model rigewithcontact
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="index.html">Wuzfni</a></h1>
+
+            <nav id="navbar" class="navbar ">
+
+                <ul>
+                    <li><a class="nav-link scrollto active p-2 p-lg-3" href="#">Home</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href="#category">category</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("SearchjopBefore", "Rigesteruser")>Find Jobs</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="dropdown pe-3">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Create an acount
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item " asp-controller="Rigesteruser" asp-action="Rigesteruser" onclick="createuser()">user</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" asp-controller="Rigesterempo" asp-action="Rigesterempo" onclick="createemployer()">employer</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    sign in
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item " asp-controller="signuser" asp-action="signuser" onclick="SignInUser()">user</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" asp-action="signempo" asp-controller="Rigesterempo" onclick="SignInEmp()">employe</a></li>
+                </ul>
+            </div>
+            <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+
+
+        </div>
+    </header>
+    <!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 pt-2 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h1>Easy to find Your jobs in wzufni</h1>
+                    <ul>
+                        <li><i class="ri-check-line"></i> Type the name of the job you are looking for</li>
+                        <li><i class="ri-check-line"></i> Search for the category and look forward to seeing all the jobs it includes</li>
+
+                    </ul>
+
+                    <div class="search-bar d-flex align-items-center">
+                        <input type="text" id="searchInput" placeholder="Search" title="Enter search keyword">
+                        <button onclick="search()"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img">
+                    <img src="~/img/hero-img.png" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+
+                <div class="row content">
+                    <div class="col-lg-6">
+                        <h2>Eum ipsam laborum deleniti velitena</h2>
+                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0">
+                        <p>
+                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum
+                        </p>
+                        <ul>
+                            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
+                            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+                        </ul>
+                        <p class="fst-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                            magna aliqua.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Section -->
+        <!-- ======= Counts Section ======= -->
+        <section id="counts" class="counts section-bg">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="count-box">
+                            <i class="bi bi-emoji-smile"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Happy Clients</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                        <div class="count-box">
+                            <i class="bi bi-journal-richtext"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                        <div class="count-box">
+                            <i class="bi bi-headset"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Hours Of Support</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                        <div class="count-box">
+                            <i class="bi bi-people"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Hard Workers</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Counts Section -->
+        <!-- ======= category Section ======= -->
+        <section id="features" class="features">
+            <div class="container">
+                <h1 class="list-unstyled d-flex justify-content-center mt-5 mb-5">Category</h1>
+                <div class="row">
+                    @foreach (var cat in Model.CreateCategory)
+                    {
+                        <div class="col-lg-3 col-md-4" id="category">
+                            <div class="icon-box">
+                                <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                                <h3><a href=@Url.Action("signuser", "signuser")>@cat.CategoryName</a></h3>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-lg-3 col-md-4 mt-4 mt-md-0" id="category">
+                        <div class="icon-box">
+                            <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
+                            <h3><a href="">Tourism and Hotels</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4 mt-md-0" id="category">
+                        <div class="icon-box">
+                            <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
+                            <h3><a href="">Technicians</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4 mt-lg-0" id="category">
+                        <div class="icon-box">
+                            <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
+                            <h3><a href="">Stores</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-database-2-line" style="color: #47aeff;"></i>
+                            <h3><a href="" class="categoryLink">Security and guarding</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
+                            <h3><a href="" class="categoryLink">sales</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
+                            <h3><a href="" class="categoryLink">Press and Media</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
+                            <h3><a href="">Medicine and pharmacy</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-anchor-line" style="color: #b2904f;"></i>
+                            <h3><a href="">marketing</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-disc-line" style="color: #b20969;"></i>
+                            <h3><a href="">Legal Affairs</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-base-station-line" style="color: #ff5828;"></i>
+                            <h3><a href="">Higher qualifications</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
+                            <h3><a href="">financial affairs</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">engineering</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">education</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">Drivers</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">computer</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">Analysis laboratories </a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">Administrative Affairs</a></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 mt-4" id="category">
+                        <div class="icon-box">
+                            <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                            <h3><a href="">more</a></h3>
+                        </div>
+                    </div>
+                </div><br>
+
+            </div>
+        </section>
+        <!-- End category Section -->
+        <!--   ======= job Section ======= -->
+        <div class="container">
+            <h1 class="list-unstyled d-flex justify-content-center mt-5 mb-5">Jobs</h1>
+            <p class="text-center text-muted">Apply for the job that suits you from the latest jobs available in Egypt</p>
+            <div class="row row-cols-1 row-cols-md-2 lg-6">
+              
+                @foreach (var jop in Model.jop)
+                {
+                    <div class="col" id="col">
+                        <div class="card h-100">
+                            <div class="pt">
+                                <div class="logo">
+                                    <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                    <h5 class="card-title"><a href=@Url.Action("signuser", "signuser")>@jop.job_name</a></h5>
+                                </div>
+                                <!-- <div class="bookmark "> -->
+                                <a href=""><i class="bi bi-bookmark"></i></a>
+                                <!-- </div> -->
+                            </div>
+                            <div class="card-body">
+
+                                <p class="card-text">@jop.job_details</p>
+                            </div>
+                            <hr>
+                            <div class="card-count">
+                                <div class="time">
+                                    <p class="text-muted">@DateTime.UtcNow</p>
+                                </div>
+                                <div class="time">
+                                    <p class="text-muted">sales</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" id="col">
+                    <div class="card h-100">
+                        <div class="pt">
+                            <div class="logo">
+                                <a href=""><img src="~/img/services.png" class="card-img-top" alt="..."></a>
+                                <h5 class="card-title"><a href="">Card title</a></h5>
+                            </div>
+                            <!-- <div class="bookmark "> -->
+                            <a href=""><i class="bi bi-bookmark"></i></a>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        <hr>
+                        <div class="card-count">
+                            <div class="time">
+                                <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time">
+                                <p class="text-muted">sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button text-center">
+                <button class="btn btn-primary tex" type="button" id="button-addon2">show More</button>
+            </div>
+
+        </div>
+        <!--  End job Section -->
+        <!-- ======= Team Section ======= -->
+        <section id="team" class="team section-bg">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Team</h2>
+                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="~/img/team/team-1.jpg" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Walter White</h4>
+                                <span>Chief Executive Officer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="~/img/team/team-2.jpg" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Sarah Jhonson</h4>
+                                <span>Product Manager</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="~/img/team/team-3.jpg" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>William Anderson</h4>
+                                <span>CTO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="~/img/team/team-4.jpg" class="img-fluid" alt="">
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Amanda Jepson</h4>
+                                <span>Accountant</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- End Team Section -->
+
+
+        <section id="contact" class="contact section-bg">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Contact</h2>
+                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="info-box">
+                                    <i class="bx bx-map"></i>
+                                    <h3>Our Address</h3>
+                                    <p>A108 Adam Street, New York, NY 535022</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box mt-4">
+                                    <i class="bx bx-envelope"></i>
+                                    <h3>Email Us</h3>
+                                    <p>info@example.com<br>contact@example.com</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box mt-4">
+                                    <i class="bx bx-phone-call"></i>
+                                    <h3>Call Us</h3>
+                                    <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                       <form asp-action="index" asp-controller="Rigesteruser" method="post" 
+                        class="p-4 border rounded shadow-sm bg-light"
+                              onsubmit="return confirm('هل أنت متأكد من إرسال الرسالة؟');">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label asp-for="ContactUs.name" class="form-label fw-bold"></label>
+                                    <input asp-for="ContactUs.name" class="form-control" placeholder="Enter your name" />
+                                    <span asp-validation-for="ContactUs.name" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label asp-for="ContactUs.email" class="form-label fw-bold"></label>
+                                    <input asp-for="ContactUs.email" class="form-control" placeholder="Enter your email" />
+                                    <span asp-validation-for="ContactUs.email" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-12">
+                                    <label asp-for="ContactUs.Subject" class="form-label fw-bold"></label>
+                                    <input asp-for="ContactUs.Subject" class="form-control" placeholder="Enter the subject" />
+                                    <span asp-validation-for="ContactUs.Subject" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-12">
+                                    <label asp-for="ContactUs.Message" class="form-label fw-bold"></label>
+                                    <textarea asp-for="ContactUs.Message" class="form-control" rows="5" placeholder="Write your message"></textarea>
+                                    <span asp-validation-for="ContactUs.Message" class="text-danger"></span>
+                                </div>
+
+                                @if (Model?.rigesteruser?.UserId != null)
+                                {
+                                    <input type="hidden" asp-for="rigesteruser.UserId" value="@(Model?.rigesteruser?.UserId.ToString() ?? "مش مسجل")" />
+
+
+                                }
+
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary px-4 py-2">Send Message</button>
+                                </div>
+                            </div>
+                        </form> 
+                        @if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["SuccessMessage"]
+    </div>
+}
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Contact Section -->
+
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-info">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span>Wuzfni</span>
+                    </a>
+                    <p>wuzfni website is not an employment company and provides all its services to those seeking work for free without paying any fees</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Category</h4>
+                    <ul>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Product Management</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>
+                        A108 Adam Street <br>
+                        New York, NY 535022<br>
+                        United States <br><br>
+                        <strong>Phone:</strong> +1 5589 55488 55<br>
+                        <strong>Email:</strong> Wuzfni@gmail.com<br>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Wuzfni</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+
+                Designed by <a href=" Wuzfni@gmail.com">Wuzfni</a>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/main.js"></script>
+    <script src="~/js/searchjob.js"></script>
+
+</body>
+
+</html>

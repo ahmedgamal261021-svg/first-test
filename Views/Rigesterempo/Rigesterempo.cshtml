@@ -1,0 +1,359 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Rigesterempo";
+}
+@model Rigesterempo 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Employer</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/phone.css" rel="stylesheet">
+    <link href="~/css/create-and-sign.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="index.html">Wuzfni</a></h1>
+
+            <nav id="navbar" class="navbar ">
+
+                <ul>
+                    <li><a class="nav-link scrollto active p-2 p-lg-3" href="index.html#">Home</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href="index.html#category">category</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href="searchJob.html">Find Jobs</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="dropdown pe-3">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Create an acount
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item " href="createUser.html" onclick="createuser()">user</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="createEmployer.html" onclick="createemployer()">employer</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    sign in
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item " href="signUser.html" onclick="SignInUser()">user</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="signEmlpoyer.html" onclick="SignInEmp()">employer</a></li>
+                </ul>
+            </div>
+            <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <section class="wizard-section-create">
+        <div class="row no-gutters">
+            <!-- <div class="col-lg-6 col-md-6">
+                <div class="wizard-content-left d-flex justify-content-center align-items-center">
+
+                </div>
+            </div> -->
+            <!-- <div class="col-lg-6 col-md-6"> -->
+            <div class="form-wizard ">
+                <form asp-action="Rigesterempo" asp-controller="Rigesterempo" method="post" role="form" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-wizard-header">
+                        <br>
+                        <p>Fill all form field to go next step Employer</p>
+
+                        <ul class="list-unstyled form-wizard-steps clearfix">
+                            <li class="active"><span>1  </span><br><a>company representative</a></li>
+                            <li><span>2</span><br><a>Basic data of the company</a></li>
+
+                        </ul>
+                    </div>
+                    <fieldset class="wizard-fieldset show">
+                        <h5>company representative</h5>
+                        <div class="form-group">
+                            <input asp-for="emp_fname" class="form-control wizard-required" />
+                            <label asp-for="emp_fname" class="wizard-form-text-label">First Name <span class="star">*</span></label>
+                            <span asp-validation-for="emp_fname" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="emp_lname" type="text" class="form-control wizard-required" />
+                            <label asp-for="emp_lname" class="wizard-form-text-label">Last Name <span class="star">*</span></label>
+                            <span asp-validation-for="emp_lname" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="emp_phone" type="text" class="form-control wizard-required" />
+                            <label asp-for="emp_phone" class="wizard-form-text-label">Phone <span class="star">*</span></label>
+                            <span asp-validation-for="emp_phone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="emp_email" type="text" class="form-control wizard-required" />
+                            <label asp-for="emp_email" class="wizard-form-text-label">Email <span class="star">*</span></label>
+                            <span asp-validation-for="emp_email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-control wizard-required" type="password" />
+                            <label asp-for="Password" class="wizard-form-text-label">Password <span class="star">*</span></label>
+                            <span asp-validation-for="Password"  class="toggle-password" onclick="togglePassword()">🙈</span>
+                            <div class="password-strength">
+                                <div class="bar weak"></div>
+                                <div class="bar medium"></div>
+                                <div class="bar strong"></div>
+                            </div>
+                        </div>
+
+                        <div class="password-message">
+                            <div class="wizard-form-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="companyName" type="text" class="form-control wizard-required" />
+                            <label asp-for="companyName" class="wizard-form-text-label">companyName<span class="star">*</span></label>
+                            <span asp-validation-for="companyName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="ProfilePhoto" class="wizard-form-text-label">Upload Profile Photo</label>
+                            <input type="file" class="form-control" id="ProfilePhoto" name="ProfilePhoto" accept="image/*" />
+                            <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+                        </div>  
+
+                        <div class="form-group">
+                            <input name="check-name" id="check-box" type="checkbox">
+                            <label for="check-box" class="Remember">Remember me</label>
+                        </div>
+                        <span class="star">* Required</span>
+
+                        <div class="form-group clearfix">
+                            <a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>
+                        </div>
+                        <a class="Already" style="color:#000000 ;font-weight: 400px;">Already have an account?</a>
+                        <a href="signEmlpoyer.html">Sign in Now</a>
+                    </fieldset>
+                    <fieldset class="wizard-fieldset">
+                        <h5>Basic data of the company</h5>
+                        <div class="form-group">
+                            <input asp-for="job_title"  type="text"  class="form-control wizard-required" />
+                            <label asp-for="job_title" class="wizard-form-text-label">job_title<span class="star">*</span></label>
+                            <span asp-validation-for="job_title" class="text-danger"></span>
+                            <div class="wizard-form-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="country">Country <span class="star">*</span></label>
+
+                            <select asp-for="country" onchange="updateCityList()" class="form-control wizard-required">
+                                <optgroup label="choose Your countries"></optgroup>
+                                <option value="EG">Egypt</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="LY">Libya</option>
+                                <option value="MA">Morocco</option>
+                                <option value="MR">Mauritania</option>
+                                <option value="OM">Oman</option>
+                                <option value="QA">Qatar</option>
+                                <option value="SD">Sudan</option>
+                                <option value="SY">Syria</option>
+                                <option value="TN">Tunisia</option>
+                            </select>
+                            <div class="wizard-form-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="government" type="text" class="form-control wizard-required" />
+                            <label asp-for="government" class="wizard-form-text-label">Government <span class="star">*</span></label>
+                            <span asp-validation-for="government" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input asp-for="field_of_work"  type="text"  class="form-control wizard-required" />
+                            <label asp-for="field_of_work" class="wizard-form-text-label">Field Of Work <span class="star">*</span></label>
+                            <span asp-validation-for="field_of_work" class="text-danger"></span>
+                        </div>
+                        @* <div class="form-group">
+                            <label for=" company_email">Company Email<span class="star">*</span></span></label>
+                            <input id=" company_email" name=" company_email" type="email" class="form-control wizard-required">
+                            <div class="wizard-form-error"></div>
+                            <span class="wizard-password-eye"><i class="far fa-eye"></i></span>
+                        </div> *@
+                        @* <div class="form-group">
+                            <label for=" company_slogan">Company Slogan<span class="star">*</span></span></label>
+                            <input id="company_slogan" name="company_slogan" class="form-control wizard-required">
+                            <div class="wizard-form-error"></div>
+                            <span class="wizard-password-eye"><i class="far fa-eye"></i></span>
+                        </div> *@
+
+                        <div class="form-group clearfix">
+                         
+                                <button type="button" class="form-wizard-previous-btn float-left">Previous</button>
+                                <button type="submit" class="form-wizard-next-btn float-right">Next</button>
+                            
+                            @* <a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+                                <a href="#" class="form-wizard-next-btn float-right">Next</a> *@
+                        </div>
+                    </fieldset>
+                </form>
+                    @if (ViewBag.ModelErrors != null)
+                        {
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach (var error in ViewBag.ModelErrors)
+                                {
+                                    <li>
+                                        <strong>@error.Field:</strong>
+                                        @foreach (var msg in error.Errors)
+                                        {
+                                            <span>@msg</span>
+                                    
+                                            <br />
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        } 
+                @section Scripts {
+                    @{
+                        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                    }
+                }
+            </div>
+            <!-- </div> -->
+        </div>
+    </section>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-info">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span>Wuzfni</span>
+                    </a>
+                    <p>wuzfni website is not an employment company and provides all its services to those seeking work for free without paying any fees</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Category</h4>
+                    <ul>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Product Management</a></li>
+                        <li><a href="#">Marketing</a></li>
+                        <li><a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>
+                        A108 Adam Street <br>
+                        New York, NY 535022<br>
+                        United States <br><br>
+                        <strong>Phone:</strong> +1 5589 55488 55<br>
+                        <strong>Email:</strong> Wuzfni@gmail.com<br>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Wuzfni</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ -->
+                Designed by <a href=" Wuzfni@gmail.com">Wuzfni</a>
+            </div>
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="~/js/login.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/phone.js"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+
+          initialCountry: "us",
+
+          utilsScript: "build/js/utils.js"
+        });
+    </script>
+
+</body>
+
+</html>

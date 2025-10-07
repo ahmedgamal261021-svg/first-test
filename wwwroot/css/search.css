@@ -1,0 +1,107 @@
+
+
+
+
+.containers {
+  margin-top: -25%;
+  width: 1000px;
+  margin-left: -25%;
+
+}
+
+
+
+.autocomplete {
+  display: flex;
+}
+
+input,
+button {
+  font-family: inherit;
+ 
+  
+}
+
+.autocomplete-input {
+  box-shadow: 8px 1px 8px 2px  rgba(145, 143, 183, 0.54) ;
+  border: 2px solid rgba(21, 16, 164, 0.54);
+  width: 100%;
+  padding: 20px;
+  padding-left: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+  flex: 1;
+  border-radius: 20px 1px 1px  20px ;
+}
+.autocomplete-input:hover{
+  border: 4px solid rgb(28, 135, 202);
+}
+
+.autocomplete-submit {
+  border-radius: 2px;
+  border: 1px solid rgba(21, 16, 164, 0.54);
+  padding: 8px 16px;
+  background:rebeccapurple;
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.autocomplete-submit svg {
+  width: 40px;
+  height: 24px;
+  fill: #fff;
+}
+
+.autocomplete-results {
+  position: absolute;
+  margin-top: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.54);
+  padding: 4px 0;
+  width: 100%;
+  z-index: 1;
+  background: #fbf8f8;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: none;
+}
+
+.autocomplete-result {
+  cursor: default;
+  padding: 4px 8px;
+  
+}
+
+.autocomplete-result:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.autocomplete-result.selected {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.search-result {
+  margin-top: 64px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* General layout and typography stuff */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  transition: all .3s ease;
+}
+
+
+
+
+
+

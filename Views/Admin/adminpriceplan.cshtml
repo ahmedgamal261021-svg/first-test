@@ -1,0 +1,447 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model PricePlanViewModel 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/homeCampany.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="~/img/apple-touch-icon.png" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">Profile Personly</span>
+                </a>
+                <!-- End Profile Iamge Icon -->
+                <!-- <li class="nav-item dropdown pe-3">
+
+
+
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                      <h6>Kevin Anderson</h6>
+                      <span>Web Designer</span>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Need Help?</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li> -->
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="~/img/team/team-1.jpg" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>Ahmed Ali</h2>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Admins.html">
+                    <i class="bi bi-person"></i>
+                    <span>Admins</span>
+                </a>
+            </li>
+            <li class="nav-item" id="personly">
+                <a class="nav-link collapsed" asp-action="admincompan" asp-controller="admin">
+                    <i class="bi bi-people"></i>
+                    <span>Compannies</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-job-seeker.html">
+                    <i class="bi bi-people"></i>
+                    <span>Job seakers</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-category.html">
+                    <i class="bi bi-card-list"></i>
+                    <span>Category</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-price-plan.html">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price Plans</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="ContuctUsUser" asp-controller="admin">
+                    <i class="bi bi-question-circle"></i>
+                    <span> Technical problems</span>
+                </a>
+            </li><!-- End  change password Page Nav -->
+
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-Subscription.html">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Subscription</span>
+                </a>
+            </li><!-- End Account manager information Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.html">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li><!-- End sign out Page Nav -->
+
+        </ul>
+
+    </aside><!-- End Sidebar-->
+
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <!-- pricing -->
+                <<section class="pricing" id="container">
+                    <div class="new-price">
+                        <!-- <img src="~/img/document.svg"> -->
+                        <button type="button" onclick="togglePayment()">Add Price plan</button>
+                    </div>
+                    <div class="container" data-aos="fade-up">
+
+                        <header class="section-header">
+
+                            <p>Current Pricing plans</p>
+                        </header><br>
+
+                        <div class="row gy-4" data-aos="fade-left">
+
+
+
+                          
+                                <div class="row gy-4 justify-content-center" data-aos="fade-left" id="pricing2" >
+                                @if (Model.AllPlans != null && Model.AllPlans.Any())
+                                {
+                                    foreach (var pric in Model.AllPlans)
+                                    {
+                                        <div class="col-lg-3 col-md-6 col-sm-12" data-aos="zoom-in" data-aos-delay="200">
+                                            <div class="card border-0 shadow-sm h-100 text-center rounded-3 pricing-card">
+                                                <div class="card-body p-4">
+                                                    <span class="badge bg-success mb-3">Featured</span>
+                                                    <h4 class="card-title fw-bold" style="color: #65c600;">@pric.subscriptionname</h4>
+                                                    <h5 class="card-price my-3"><sup>$</sup>@pric.subscriptionprice<span class="text-muted fs-6"> / mo</span></h5>
+                                                    <img src="~/img/pricing-starter.png" class="img-fluid my-3 rounded" alt="Plan Image" style="max-height:120px; object-fit:contain;">
+                                                    <ul class="list-unstyled mb-4">
+                                                        <li>@pric.DescriptionPricin</li>
+                                                        <li class="text-muted">Massa ultricies mi</li>
+                                                    </ul>
+                                                    <div class="d-flex justify-content-center gap-2">
+                                                        <a href="javascript:void(0)" onclick="openEditModal('@pric.PriceId', '@pric.subscriptionname', '@pric.subscriptionprice', '@pric.Subscriptiontype', '@pric.DescriptionPricin')"
+                                                           class="btn btn-sm btn-warning">Edit</a>
+                                                        
+                                                        <form method="post" asp-action="DeletePricePlan" asp-route-id="@pric.PriceId" onsubmit="return confirm('Are you sure?');">
+                                                            @Html.AntiForgeryToken()
+                                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-12 text-center">
+                                        <p class="text-muted">No price plans available at the moment</p>
+                                    </div>
+                                }
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                </section><br>  
+         
+                <!-- payment -->
+
+                <div class="container p-0 " id="payment" style="display:none">
+
+                    <div class="card px-4">
+                        <p class="h8 py-3">Add New Pricing plans</p>
+                        <form method="POST" asp-action="adminpriceplan" asp-controller="admin">
+                            @if (ViewBag.ModelErrors != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach (var err in ViewBag.ModelErrors)
+                                        {
+                                            <li>
+                                                <strong>@err.Field</strong>:
+                                                @string.Join(", ", err.Errors)
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <div class="row gx-3">
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Subscription Name</p>
+                                        
+                                        <input asp-for="NewPlan.subscriptionname" class="form-control mb-3" type="text"  required>
+                                        <span asp-validation-for="NewPlan.subscriptionname" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Subscription price $</p>
+                                        <input asp-for="NewPlan.subscriptionprice" class="form-control mb-3" type="number" required>
+                                        <span asp-validation-for="NewPlan.subscriptionprice" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Subscription type</p>
+                                        <label asp-for="NewPlan.Subscriptiontype" class="form-label"></label>
+                                        <select asp-for="NewPlan.Subscriptiontype" class="form-control mb-3 pt-2" required>
+                                            <option value="" disabled selected>Choose Your Subscription</option>
+                                            <option value="monthly">Monthly</option>
+                                            <option value="yearly">Yearly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column">
+                                    <p class="text mb-1">Description Pricing</p>
+                                    <textarea asp-for="NewPlan.DescriptionPricin" rows="4" class="form-control mb-3" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column align-items-center">
+                                    <button type="submit" class="btn btn-primary mb-3">Add Now</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            </div>
+            </div>
+
+            </div>
+
+            </div>
+        </section>
+
+    </main>
+    <div class="modal fade" id="editPriceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Price Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="editPriceForm" method="post" asp-action="EditPricePlan">
+                    <div class="modal-body">
+                        <input type="hidden" name="PriceId" id="editPriceId" />
+                        <div class="mb-3">
+                            <label>Subscription Name</label>
+                            <input type="text" name="subscriptionname" id="editName" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>Subscription Price ($)</label>
+                            <input type="number" name="subscriptionprice" id="editPrice" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label>Subscription Type</label>
+                            <select name="Subscriptiontype" id="editType" class="form-control" required>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Description</label>
+                            <textarea name="DescriptionPricin" id="editDesc" class="form-control" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src="~/js/admin.js"></script>
+
+
+    <!-- <script>
+        function togglePayment(plan) {
+        const pricingSections = document.querySelectorAll('[id^="pricing"]');
+        const paymentSection = document.getElementById('payment');
+        const container = document.getElementById('container');
+        // Hide all pricing sections except the clicked one
+        pricingSections.forEach(section => {
+            if (section.getAttribute('id') !== `pricing-${plan}`) {
+                section.style.display = 'none';
+                // container.style.display = 'none';
+            }
+        });
+
+        // Show payment section
+        paymentSection.style.display = 'block';
+    }
+
+      </script>-->
+    <script>
+        function togglePayment() {
+            document.getElementById("payment").style.display = "block";
+        }
+
+        function openEditModal(id, name, price, type, desc) {
+            document.getElementById("editPriceId").value = id;
+            document.getElementById("editName").value = name;
+            document.getElementById("editPrice").value = price;
+            document.getElementById("editType").value = type;
+            document.getElementById("editDesc").value = desc;
+
+            var modal = new bootstrap.Modal(document.getElementById("editPriceModal"));
+            modal.show();
+        }
+    </script>
+</body>
+
+</html>

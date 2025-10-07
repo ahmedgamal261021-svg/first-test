@@ -1,0 +1,333 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var Name = Context.Session.GetString("user_Name");
+}
+@model List<InterviewInformation>
+   
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="HomeUser.html" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+            <nav id="navbar" class="navbar ">
+                <ul>
+                    <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+
+                </ul>
+            </nav>
+        </div>
+        <!-- End Logo -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <!-- <li class="nav-item d-block d-lg-none">
+                  <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                  </a>
+                </li> -->
+                <!-- End Search Icon-->
+
+                <div class="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="@(Url.Content("~/uploads/" + photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="user-edit-account.html">
+                    <span class="d-none d-md-block  ps-2">@Name</span>
+                </a>
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+               
+                <img src=" @(Url.Content("~/uploads/" + photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@Name</h2>
+            </li>
+
+            <li class="nav-item" id="personly">
+                <a asp-action="edituser" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-person"></i>
+                    <span>Edit My Account</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="userFavoritejobs" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-heart"></i>
+                    <span>Favorite Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="changeuserpass" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="applijopuser" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Applied Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="appliinterview" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-Handshake"></i>
+                    <span>Available Interviews</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="Logout" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <!-- content of user-->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Available Interviews</h5>
+
+
+                            <!-- <div class="datatable-top">
+                              <div class="datatable-dropdown">
+                                <label>
+                                    <select class="datatable-selector"><option value="5">5</option><option value="10" selected="">10</option><option value="15">15</option><option value="-1">All</option></select> entries per page
+                                </label>
+                              </div>
+                              <div class="datatable-search">
+                                <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
+                              </div>
+                            </div> -->
+
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <b>N</b>ame
+                                        </th>
+                                        <th>Ext.</th>
+                                        <th>City</th>
+                                        <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
+                                        <th>Completion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var Int in Model){ 
+                                     <tr>
+                                        <td>@Int.job_name </td>
+                                            <td>@Int.companyName</td>
+                                            <td>@Int.interview_date</td>
+                                            <td>@Int.interview_address</td>
+                                            <td>@Int.interview_result</td>
+                                    </tr> 
+                                }
+
+                                </tbody>
+                            </table>
+
+                            <!-- <div class="datatable-bottom">
+                              <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
+                                <nav class="datatable-pagination">
+                                  <ul class="datatable-pagination-list">
+                                    <li class="datatable-pagination-list-item datatable-hidden datatable-disabled">
+                                      <button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">‹
+
+                                      </button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item datatable-active">
+                                      <button data-page="1" class="datatable-pagination-list-item-link" aria-label="Page 1">1</button>
+                                    </li><li class="datatable-pagination-list-item">
+                                      <button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">2</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="3" class="datatable-pagination-list-item-link" aria-label="Page 3">3</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="4" class="datatable-pagination-list-item-link" aria-label="Page 4">4</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="5" class="datatable-pagination-list-item-link" aria-label="Page 5">5</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="6" class="datatable-pagination-list-item-link" aria-label="Page 6">6</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="7" class="datatable-pagination-list-item-link" aria-label="Page 7">7</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item datatable-ellipsis datatable-disabled">
+                                      <button class="datatable-pagination-list-item-link">…</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="10" class="datatable-pagination-list-item-link" aria-label="Page 10">10</button>
+                                    </li>
+                                    <li class="datatable-pagination-list-item">
+                                      <button data-page="2" class="datatable-pagination-list-item-link" aria-label="Page 2">›</button>
+                                    </li>
+                                  </ul>
+                                </nav>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- content of user-->
+                <!-- ======= Footer ======= -->
+                <footer id="footer" class="footer">
+
+                    <div class="container">
+                        <div class="row gy-4">
+                            <div class="col-lg-5 col-md-12 footer-info">
+                                <a href="index.html" class="logo d-flex align-items-center">
+                                    <span>Wuzfni</span>
+                                </a>
+                                <p>wuzfni website is not an employment company and provides all its services to those seeking work for free without paying any fees</p>
+                                <div class="social-links d-flex mt-4">
+                                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-6 footer-links">
+                                <h4>Links</h4>
+                                <ul>
+                                    <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+                                    <li><a href="#">Privacy policy</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-2 col-6 footer-links">
+                                <h4>Our Category</h4>
+                                <ul>
+                                    <li><a href="#">Web Design</a></li>
+                                    <li><a href="#">Web Development</a></li>
+                                    <li><a href="#">Product Management</a></li>
+                                    <li><a href="#">Marketing</a></li>
+                                    <li><a href="#">Graphic Design</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                                <h4>Contact Us</h4>
+                                <p>
+                                    A108 Adam Street <br>
+                                    New York, NY 535022<br>
+                                    United States <br><br>
+                                    <strong>Phone:</strong> +1 5589 55488 55<br>
+                                    <strong>Email:</strong> Wuzfni@gmail.com<br>
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="container mt-4">
+                        <div class="copyright">
+                            &copy; Copyright <strong><span>Wuzfni</span></strong>. All Rights Reserved
+                        </div>
+                        <div class="credits">
+                            <!-- All the links in the footer should remain intact. -->
+                            <!-- You can delete the links only if you purchased the pro version. -->
+                            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/ -->
+                            Designed by <a href=" Wuzfni@gmail.com">Wuzfni</a>
+                        </div>
+                    </div>
+
+                </footer>
+                <!-- End Footer -->
+            </div>
+        </section>
+    </main>
+    <!-- End #main -->
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+</body>
+
+</html>

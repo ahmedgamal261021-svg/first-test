@@ -1,0 +1,654 @@
+﻿@model JobAddViewModel 
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var namecompany = Context.Session.GetString("companyname");
+    var name = Context.Session.GetString("name");
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/user.css" rel="stylesheet">
+    <link href="~/css/create-and-sign.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">@name</span>
+                </a>
+                <!-- End Profile Iamge Icon -->
+                <!-- <li class="nav-item dropdown pe-3">
+
+
+
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                      <h6>Kevin Anderson</h6>
+                      <span>Web Designer</span>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Need Help?</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li> -->
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="~/uploads/@photoName" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@namecompany</h2>
+
+            </li>
+
+            <li class="nav-item" id="personly">
+                <a class="nav-link collapsed" asp-action="editempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-person"></i>
+                    <span>Edit My Account</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="jobadd" asp-controller="jobadd" >
+                    <i class="bi bi-card-list"></i>
+                    <span>My Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchempo" asp-controller="Rigesterempo">
+                    <i class="bi bi-people"></i>
+                    <span>Search for Employees</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="searchBouquet" asp-controller="Rigesterempo">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price Plans</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+            @* <li class="nav-item">
+              <a class="nav-link collapsed" asp-action="SS" asp-controller="Home">
+                    <i class="bi bi-bar-chart"></i>
+                    <span> Price </span>
+                </a>  
+            </li> *@
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="changeempopass" asp-controller="Rigesterempo">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li><!-- End  change password Page Nav -->
+
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-action="Logout" asp-controller="Rigesterempo">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li><!-- End sign out Page Nav -->
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+        <section class="section profile">
+            <div class="row">
+                <!-- company jobs-->
+                <div class="col-lg-12" id="company-job">
+                    <div class="card">
+                        <div class="card-body" style="padding-top: 20px;">
+                            <h2 class="card-title"> <a href="#" class="add-job" onclick="addNewJob()">Add job ➕</a></h2>
+                            <table class="table datatable">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Job   👷</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Number of Applicants</th>
+                                        <th scope="col">Number of rejected</th>
+                                        <th scope="col">Work Time 🕗</th>
+                                        <th scope="col">Date of Publication</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var jops in Model.Jobs){
+                                    <tr>
+                                        
+                                        <td>@jops.job_name</td>
+                                        <td>@jops.country (@jops.government)</td>
+                                        <td></td>
+                                        <td>@jops.number_of_employees</td>
+                                        <td>@jops.type_of_job</td>
+                                        <td>@DateTime.Now</td>
+                                        <td>
+                                            <a asp-action="jopdetails"
+                                               asp-controller="Jobadd"
+                                               asp-route-id="@jops.job_id"
+                                               onclick="jobdetails()">Details</a>
+                                        </td>
+                                            <td>
+                                                <a asp-action="ShowApplicant"
+                                                   asp-controller="jobadd"
+                                                   asp-route-id="@jops.job_id" onclick="ShowApplicants()">Show Applicants</a>
+                                            </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <!--end company jobs-->
+                <!-- add new job -->
+                <section class="wizard-section" id="add-job" style="display:none">
+                    <div class="row no-gutters">
+                        <!-- <div class="col-lg-6 col-md-6">
+
+                        </div> -->
+                        <!-- <div class="col-lg-6 col-md-6 "> -->
+                        <h1>Add job</h1>
+                        <div class="form-wizard">
+                            <form asp-action="jobadd" asp-controller="jobadd" method="post" role="form">
+                                @Html.AntiForgeryToken()
+                                @* @Html.ValidationSummary(false, "", new { @class = "text-danger" }) *@
+                                <input asp-for="NewJob.CompanyId" type="hidden" value="@Model.NewJob.CompanyId" />
+                                <div class="form-wizard-header">
+                                    <br>
+                                    <ul class="list-unstyled form-wizard-steps clearfix">
+                                        <li class="active"><span>1</span><br><a>Job data </a> </li>
+                                        <li><span>2</span><br><a>Job requirements </a></li>
+                                        <li><span>3</span><br><a>Salary </a></li>
+                                    </ul>
+                                </div>
+                                <fieldset class="wizard-fieldset show">
+                                    <h5>Job data</h5>
+                                    
+
+                                    <div class="form-group">
+                                        <input  asp-for="NewJob.job_name" type="text" class="form-control wizard-required" >
+                                        <label asp-for="NewJob.job_name" class="wizard-form-text-label">Job name<span class="star">*</span></label>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="NewJob.job_field" type="text" class="form-control wizard-required">
+                                        <label asp-for="NewJob.job_field" class="wizard-form-text-label">Job field<span class="star">*</span></label>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.country">Country<span class="star">*</span></label>
+                                        <select asp-for="NewJob.country" onchange="updateCityList()" class="form-control wizard-required">
+                                            <optgroup label="choose Your countries"></optgroup>
+                                            <option selected>choose Your countries</option>
+                                            <option value="EG">Egypt</option>
+                                            <option value="DZ">Algeria</option>
+                                            <option value="KW">Kuwait</option>
+                                            <option value="LB">Lebanon</option>
+                                            <option value="LY">Libya</option>
+                                            <option value="MA">Morocco</option>
+                                            <option value="MR">Mauritania</option>
+                                            <option value="OM">Oman</option>
+                                            <option value="QA">Qatar</option>
+                                            <option value="SD">Sudan</option>
+                                            <option value="SY">Syria</option>
+                                            <option value="TN">Tunisia</option>
+                                        </select>
+                                        <div class="wizard-form-error"></div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.government">Governante<span class="star">*</span></label>
+                                        <select asp-for="NewJob.government" class="form-control wizard-required">
+                                            <option selected label="Choose the " government first"></option>
+                                            <option value="Cairo">Cairo</option>
+                                            <option value="Giza">Giza</option>
+                                            <option value="Alexandria">Alexandria</option>
+                                        </select>
+                                        <div class="wizard-form-error"></div>
+                                        <span class="wizard-password-eye"><i class="far fa-eye"></i></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.age">Age<span class="star">*</span></label>
+                                        <input asp-for="NewJob.age" class="form-control wizard-required" type="number" min="22" max="60" placeholder="Enter your age" />
+                                        <span asp-validation-for="NewJob.age" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.type_of_job">Type of Job<span class="star">*</span></label>
+                                        <select asp-for="NewJob.type_of_job" class="form-control wizard-required">
+                                            <option selected label="Please select type of job"></option>
+                                            <option>Full Time</option>
+                                            <option>Half Time</option>
+                                            <span asp-validation-for="NewJob.type_of_job" class="text-danger"></span>
+
+                                        </select>
+                                        <div class="wizard-form-error"></div>
+                                        <span class="wizard-password-eye"><i class="far fa-eye"></i></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="NewJob.number_of_employees" type="number" class="form-control wizard-required" id="Number">
+                                        <label asp-for="NewJob.number_of_employees" class="wizard-form-text-label">Number of Employees</label>
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.job_details" class="wizard-form-text-label">Job details<span class="star">*</span></label>
+                                        <input asp-for="NewJob.job_details" type="text" class="form-control wizard-required" id="details">
+
+                                        <div class="wizard-form-error"></div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <a href="javascript:;" class="form-wizard-next-btn float-right" onclick="storeAndDisplayData()">Next</a>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="wizard-fieldset">
+                                    <h5>Job requirements</h5>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.educational_level">Educational level<span class="star">*</span></span></label>
+                                        <select asp-for="NewJob.educational_level" class="form-control wizard-required">
+                                            <optgroup label="choose Your Educational level"></optgroup>
+                                            <option>College</option>
+                                            <option>institute</option>
+                                            <option>bachelor's degree </option>
+                                            <option>diploma</option>
+                                            <option>uneducated</option>
+                                            <option>qualified</option>
+                                        </select>
+                                        <div class="wizard-form-error"></div>
+                                        <span class="wizard-password-eye"><i class="far fa-eye"></i></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.years_of_experience">Experience level<span class="star">*</span></span></label>
+                                        <select asp-for="NewJob.years_of_experience" class="form-control wizard-required">
+                                            <optgroup label="choose Your Experience level"></optgroup>
+                                            <option>No experience</option>
+                                            <option>Fresh graduate</option>
+                                            <option>1-3 Years</option>
+                                            <option>3-5 Years</option>
+                                            <option>5-8 Years</option>
+                                            <option> More Than Years </option>
+                                        </select>
+                                        <div class="wizard-form-error"></div>
+                                        <span class="wizard-password-eye"><i class="far fa-eye"></i></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.CategoryId">Category<span class="star">*</span></label>
+                                        <select asp-for="NewJob.CategoryId" class="form-control" asp-items="Model.CategoryList">
+                                            <option value="">-- Select Category --</option>
+                                        </select>
+                                        <span asp-validation-for="NewJob.CategoryId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewJob.Gender">Gender<span class="star">*</span></label><br />
+                                        <input asp-for="NewJob.Gender" type="radio" value="Male" /> Male
+                                        <input asp-for="NewJob.Gender" type="radio" value="Female" /> Female
+                                        <input asp-for="NewJob.Gender" type="radio" value="Other" /> Both
+                                        <span asp-validation-for="NewJob.Gender" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
+                                        <a href="javascript:;" class="form-wizard-next-btn float-right" onclick="storeAndDisplayData()">Next</a>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="wizard-fieldset">
+                                    <h5>Salary</h5>
+                                    <div class="form-group">
+                                        <input asp-for="NewJob.MinimumSalary" type="number" class="form-control wizard-required" id="Minimum">
+                                        <label asp-for="NewJob.MinimumSalary" class="wizard-form-text-label">Minimum salary</label>
+                                        <!-- <div class="wizard-form-error"></div> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" asp-for="NewJob.MaximumSalary" class="form-control wizard-required" id="Maximum">
+                                        <label asp-for="NewJob.MaximumSalary" class="wizard-form-text-label">Maximum salary</label>
+                                        <div class="form-group clearfix">
+                                            <button type="button"
+                                                    class="form-wizard-previous-btn float-left">
+                                                Previous
+                                            </button>
+                                            <button type="submit"
+                                                    class="form-wizard-next-btn float-right">
+                                                job posting
+                                            </button>
+                              
+
+                                        </div>
+                                </fieldset>
+
+                            </form>
+                            @if (ViewBag.ModelErrors != null)
+                            {
+                                <div class="alert alert-danger mt-3">
+                                    <ul>
+                                        @foreach (var error in ViewBag.ModelErrors)
+                                        {
+                                            <li>
+                                                <strong>@error.Field:</strong>
+                                                @foreach (var msg in error.Errors)
+                                                {
+                                                    <span>@msg</span>
+
+                                                    <br />
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </section>
+                <!--end add new job -->
+                <!-- job details -->
+                <div class="card" id="job-details" style="display:none">
+                    <div class="job-posting">
+                        <h1 class="job-title">Detalis Job</h1><hr>
+                        <h3 class="job-name">Back-end-developer</h3>
+                        <p class="location"> location : sohag</p>
+                        <p class="salary">salary 💵: 2000 - 45000</p>
+                        <p class="experience">Experience : 3 month</p>
+
+                    </div>
+                    <div class="job-posting">
+                        <h1 class="job-title">Information's Company</h1><hr>
+                        <h3 class="job-name">Company name</h3>
+                        <p class="location"> location Company : sohag</p>
+                        <p>Labor required: 10</p>
+                        <p>Number of applicants: 3</p>
+
+                    </div>
+
+                    <div class="job-posting">
+                        <h2>Job Requirements</h2>
+                        <ul>
+                            <li><strong>Range Age:</strong> 16 - 35 years</li>
+                            <li><strong>Education:</strong> Graduate</li>
+                            <li><strong>Experience:</strong>2 years</li>
+                            <li><strong>Driver's License:</strong> Not required</li>
+                            <li><strong>Gender:</strong> Male</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="Edit">Edit ✍</button>
+                    <button type="button" class="delete">Delete 🗑️</button>
+
+                </div>
+                <!--end job details -->
+                <!-- show applicants -->
+                <div class="col-lg-12" id="show-app" style="display:none">
+                    <div class="card-body">
+                        <table class="show-app">
+
+                            <tr>
+                                <th>Photo</th>
+                                <th>Applicant Name</th>
+                                <th>Address</th>
+                                <th>Educational Degree</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Nationality</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td><img src="assets/img/team/team-3.jpg"></td>
+                                <td>@Model.</td>
+                                <td>Giza</td>
+                                <td>Graduate</td>
+                                <td>Male</td>
+                                <td>21</td>
+                                <td>Egyptian</td>
+                                <td><a href="profil-person1.html" onclick="personalProfile()">Personal Profile</a></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <!--end show applicants -->
+                <!-- profile person -->
+                <div class="card" id="profile-person" style="display:none">
+                    <div class="job-posting">
+                        <h1 class="job-title">Applicant information</h1><hr>
+                        <table class="asa">
+                            <tr>
+                                <td> <img src="assets/img/team-1.jpg" width="100px"></td>
+                                <td><h3 class="job-name">Arafa Khames</h3></td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                    <div class="job-posting">
+                        <h2>personal information</h2>
+                        <ul>
+                            <li><strong> Age:</strong> 21 years</li>
+                            <li><strong>Education:</strong> Graduate</li>
+                            <li><strong>Experience:</strong>2 years</li>
+                            <li><strong>Driver's License:</strong> Not required</li>
+                            <li><strong>Gender:</strong> Male</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="Edit"> Accept 👍</button>
+                    <button type="button" class="delete">Reject ❌</button>
+                </div>
+                <!--end profile person -->
+            </div>
+        </section>
+    </main>
+    <!-- End #main -->
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="~/js/login.js"></script>
+    <script>
+            // لجمع البيانات وتخزينها في localStorage ثم التوجيه إلى صفحة أخرى
+        function storeAndRedirect() {
+            const jobName = document.getElementById('Job-name').value;
+            const jobField = document.getElementById('Job-field').value;
+            const country = document.getElementById('countrySelect').value;
+            const governorate = document.getElementById('Governorate').value;
+            const jobType = document.getElementById('times').value;
+            const numberOfEmployees = document.getElementById('Number').value;
+            const jobDetails = document.getElementById('details').value;
+            const educationalLevel = document.getElementById('Educational').value;
+            const experienceLevel = document.getElementById('Experience').value;
+            const gender = document.querySelector('input[name="radio-name"]:checked').nextElementSibling.textContent;
+            const minimumSalary = document.getElementById('Minimum').value;
+            const maximumSalary = document.getElementById('Maximum').value;
+
+            const jobData = {
+                jobName,
+                jobField,
+                country,
+                governorate,
+                jobType,
+                numberOfEmployees,
+                jobDetails,
+                educationalLevel,
+                experienceLevel,
+                gender,
+                minimumSalary,
+                maximumSalary
+            };
+
+            localStorage.setItem('jobData', JSON.stringify(jobData));
+
+            window.location.href = 'searchJob-aftersign.html';  // استبدل 'page.html' بعنوان الصفحة التي تريد توجيه المستخدم إليها
+        }
+
+        // لاسترجاع البيانات وعرضها في الصفحة الأخرى
+        function displayJobData() {
+            const jobData = JSON.parse(localStorage.getItem('jobData'));
+            if (jobData) {
+                const jobList = document.getElementById('job-list');
+                const newRow = document.createElement('div');
+                newRow.innerHTML = `
+                <div class="col"id="col">
+                        <div class="card h-100">
+                          <div class="pt">
+                            <div class="logo">
+                              <a href=""><img src="assets/img/services.png" class="card-img-top" alt="..."></a>
+                              <p class="card-title"id="card-title"><a href="">${jobData.jobName}</a></p>
+                            </div>
+
+                            <a href="#"><i class="bi bi-bookmark" id="bookmarkIcon"></i></a>
+
+                          </div>
+                          <div class="card-body">
+
+                            <p class="card-text"id="card-title">${jobData.jobDetails}</p>
+                          </div>
+                          <hr>
+                          <div class="card-count">
+                            <div class="time">
+                              <p class="text-muted">Last updated 3 mins ago</p>
+                            </div>
+                            <div class="time"id="categoryName">
+                              <p class="text-muted"id="card-title">${jobData.jobField}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                `;
+                jobList.appendChild(newRow);
+
+                // إزالة البيانات من localStorage بعد استرجاعها
+                localStorage.removeItem('jobData');
+            }
+        }
+
+        // استدعاء displayJobData عند تحميل الصفحة الأخرى
+        document.addEventListener('DOMContentLoaded', displayJobData);
+
+    </script>
+
+</body>
+
+</html>

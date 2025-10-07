@@ -1,0 +1,376 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var photoName = Context.Session.GetString("ProfilePhoto") ?? "/img/apple-touch-icon.png";
+    var Name = Context.Session.GetString("user_Name");
+}
+}
+
+@model ChangePassword 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Wuzfni</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/css/homeCampany.css" rel="stylesheet">
+    <link href="~/css/sign.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- <img src="~/img/logo.png" alt=""> -->
+                <span class="d-none d-lg-block">Wuzfni</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+            <nav id="navbar" class="navbar ">
+                <ul>
+                    <li><a class="nav-link scrollto active p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#>Home</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#category">category</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("searchjop", "signuser")>Find Jobs</a></li>
+                    <li><a class="nav-link scrollto p-2 p-lg-3" href=@Url.Action("homeuser", "signuser")#contact>Contact</a></li>
+
+                </ul>
+
+            </nav>
+        </div><!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <div class="dropdown">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-2" id="dropdownMenuButton2" href="#" data-bs-toggle="dropdown">
+                        <img src="@(Url.Content("~/uploads/" +  photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item " href="index.html" onclick="logout()">Sign out</a></li>
+
+                    </ul>
+                </div>
+                <a class="nav-link nav-profile d-flex align-items-center pe-2" href="HomeCompany.html">
+                    <span class="d-none d-md-block  ps-2">@Name</span>
+                </a>
+                <!-- End Profile Iamge Icon -->
+                <!-- <li class="nav-item dropdown pe-3">
+
+
+
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                      <h6>Kevin Anderson</h6>
+                      <span>Web Designer</span>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Need Help?</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li> -->
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item" id="campanyName">
+                <img src="@(Url.Content("~/uploads/" +  photoName))" alt="Profile" class="rounded-circle dropdown-toggle">
+                <h2>@Name</h2>
+            </li>
+
+            <li class="nav-item" id="personly">
+                <a asp-action="edituser" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-person"></i>
+                    <span>Edit My Account</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-action="userFavoritejobs" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-heart"></i>
+                    <span>Favorite Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="changeuserpass" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-lock"></i>
+                    <span> Change Password</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="applijopuser" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Applied Jobs</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="appliinterview" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-Handshake"></i>
+                    <span>Available Interviews</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-action="Logout" asp-controller="signuser" class="nav-link collapsed">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside><!-- End Sidebar-->
+    <!-- <div class="col-xl-8">
+      <div class="tab-pane fade pt-3" id="profile-change-password">
+
+        <form>
+
+          <div class="row mb-3">
+            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="password" type="password" class="form-control" id="currentPassword">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="newpassword" type="password" class="form-control" id="newPassword">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+            <div class="col-md-8 col-lg-9">
+              <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Change Password</button>
+          </div>
+        </form>
+
+      </div>
+    </div> -->
+
+    <main id="main" class="main">
+
+        <!-- <div class="pagetitle">
+          <h1>Profile</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item">Users</li>
+              <li class="breadcrumb-item active">Profile</li>
+            </ol>
+          </nav>
+        </div> -->
+        <!-- End Page Title -->
+        <section class="section profile">
+            <div class="row">
+
+                <div class="my-login-page">
+                    <section class="h-100">
+                        <div class="container h-100">
+                            <div class="row justify-content-md-center h-100">
+                                <div class="card-wrapper">
+
+                                    <div class="card fat">
+                                        <div class="card-body">
+
+                                            <h3 class="card-title">Change your Password</h3>
+                                            <form asp-action="changeuserpass" asp-controller="signuser" method="POST" class="my-login-validation" novalidate="">
+                                                <div class="form-group">
+                                                    <label for="phone">Old password</label>
+                                                    <input asp-for="password" id="password" type="password" class="form-control" value="" required autofocus>
+                                                    <span asp-validation-for="password" class="text-danger"></span>
+                                                    <div class="invalid-feedback">
+                                                        password is required
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="password">
+                                                        New Password
+
+                                                    </label>
+                                                    <input asp-for="password1"  id="password1" type="password" class="form-control" required data-eye oninput="checkPasswordMatch()">
+                                                    <span asp-validation-for="password1" class="text-danger"></span>
+                                                    <div class="invalid-feedback">
+                                                        Password is required
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">
+                                                        Confirm New Password
+
+                                                    </label>
+                                                    <input asp-for="password2" id="password2" type="password" class="form-control"  required data-eye oninput="checkPasswordMatch()">
+                                                    <span asp-validation-for="password2" class="text-danger"></span>
+                                                    <p id="error-message " style="color: red;"></p>
+                                                    <div class="invalid-feedback">
+                                                        Password is required
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-checkbox custom-control">
+                                                        <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                                                        <label for="remember" class="custom-control-label">Remember Me</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group m-0">
+                                                    <button type="submit" name="submit" class="btn btn-primarys btn-block">
+                                                        Save change
+                                                    </button>
+                                                </div>
+                                                @if (TempData["SuccessMessage"] != null)
+                                                {
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        @TempData["SuccessMessage"]
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                    </div>
+                                                }
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- <script src="~/js/sign.js"></script> -->
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <!-- End #main -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/vendor/echarts/echarts.min.js"></script>
+    <script src="~/vendor/quill/quill.min.js"></script>
+    <script src="~/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/js/homeCampany.js"></script>
+    <script src="~/js/sign.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    <script>
+
+          function validateForm() {
+            const newPassword = document.getElementById("password1").value;
+            const confirmPassword = document.getElementById("password2").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (newPassword !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match!";
+                return false;
+            } else {
+                errorMessage.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>
